@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — YIC IT Support</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .admin-layout {
+      display: grid;
+      grid-template-columns: 1fr 340px;
+      gap: 24px;
+      align-items: start;
+    }
+    .filter-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
+    }
+    .filter-bar select, .filter-bar input { flex: 1; min-width: 140px; }
+    .admin-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+    @media (max-width: 900px) {
+      .admin-layout { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <header>
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-icon">IT</div>
+        <div>YIC IT Support<span>Admin Panel</span></div>
+      </a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="admin_dashboard.html" class="active"><i class="fa fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="logout.html"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container d-flex justify-between align-center flex-wrap gap-2">
+      <div>
+        <h1><i class="fa fa-tachometer-alt"></i> Admin Dashboard</h1>
+        <p>Manage all IT support tickets and update their status.</p>
+      </div>
+      <div class="admin-badge"><i class="fa fa-shield-alt"></i> Administrator</div>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa fa-ticket-alt"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Total Tickets</div>
+            <div class="stat-value">24</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon yellow"><i class="fa fa-folder-open"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Open</div>
+            <div class="stat-value">8</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa fa-spinner"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">In Progress</div>
+            <div class="stat-value">6</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa fa-check-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Resolved</div>
+            <div class="stat-value">10</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="admin-layout">
+
+        <!-- Tickets Table -->
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title"><i class="fa fa-list"></i> All Support Tickets</h2>
+            </div>
+
+            <div class="filter-bar">
+              <select id="filter-status" class="form-control">
+                <option value="">All Statuses</option>
+                <option value="open">Open</option>
+                <option value="in-progress">In Progress</option>
+                <option value="resolved">Resolved</option>
+                <option value="closed">Closed</option>
+              </select>
+              <select id="filter-priority" class="form-control" onchange="filterPriority(this.value)">
+                <option value="">All Priorities</option>
+                <option value="high">High</option>
+                <option value="medium">Medium</option>
+                <option value="low">Low</option>
+              </select>
+            </div>
+
+            <div class="table-wrapper">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Ticket #</th>
+                    <th>Title</th>
+                    <th>User</th>
+                    <th>Category</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                    <th>Date</th>
+                  </tr>
+                </thead>
+                <tbody id="tickets-table-body">
+                  <tr data-status="open" data-priority="high">
+                    <td><strong>#1025</strong></td>
+                    <td>Cannot access student email</td>
+                    <td>Aseel Alharbi</td>
+                    <td>Account</td>
+                    <td><span class="priority priority-high">High</span></td>
+                    <td><span class="badge badge-open">Open</span></td>
+                    <td>May 14</td>
+                  </tr>
+                  <tr data-status="open" data-priority="high">
+                    <td><strong>#1021</strong></td>
+                    <td>Wi-Fi down in Lab 204</td>
+                    <td>Leen Albooq</td>
+                    <td>Network</td>
+                    <td><span class="priority priority-high">High</span></td>
+                    <td><span class="badge badge-open">Open</span></td>
+                    <td>May 12</td>
+                  </tr>
+                  <tr data-status="in-progress" data-priority="medium">
+                    <td><strong>#1018</strong></td>
+                    <td>Microsoft Office crashes on startup</td>
+                    <td>Leen Albooq</td>
+                    <td>Software</td>
+                    <td><span class="priority priority-medium">Medium</span></td>
+                    <td><span class="badge badge-progress">In Progress</span></td>
+                    <td>May 10</td>
+                  </tr>
+                  <tr data-status="open" data-priority="medium">
+                    <td><strong>#1015</strong></td>
+                    <td>Keyboard not responding in Room 110</td>
+                    <td>Ahmed Saad</td>
+                    <td>Hardware</td>
+                    <td><span class="priority priority-medium">Medium</span></td>
+                    <td><span class="badge badge-open">Open</span></td>
+                    <td>May 9</td>
+                  </tr>
+                  <tr data-status="in-progress" data-priority="high">
+                    <td><strong>#1013</strong></td>
+                    <td>Cannot login to campus portal</td>
+                    <td>Sara Khalid</td>
+                    <td>Account</td>
+                    <td><span class="priority priority-high">High</span></td>
+                    <td><span class="badge badge-progress">In Progress</span></td>
+                    <td>May 8</td>
+                  </tr>
+                  <tr data-status="resolved" data-priority="low">
+                    <td><strong>#1012</strong></td>
+                    <td>Printer in Building B not printing</td>
+                    <td>Leen Albooq</td>
+                    <td>Printer</td>
+                    <td><span class="priority priority-low">Low</span></td>
+                    <td><span class="badge badge-resolved">Resolved</span></td>
+                    <td>May 5</td>
+                  </tr>
+                  <tr data-status="open" data-priority="low">
+                    <td><strong>#1010</strong></td>
+                    <td>Scanner not detected by computer</td>
+                    <td>Omar Nasser</td>
+                    <td>Printer</td>
+                    <td><span class="priority priority-low">Low</span></td>
+                    <td><span class="badge badge-open">Open</span></td>
+                    <td>May 3</td>
+                  </tr>
+                  <tr data-status="resolved" data-priority="medium">
+                    <td><strong>#1008</strong></td>
+                    <td>PC fan making loud noise</td>
+                    <td>Aseel Alharbi</td>
+                    <td>Hardware</td>
+                    <td><span class="priority priority-medium">Medium</span></td>
+                    <td><span class="badge badge-resolved">Resolved</span></td>
+                    <td>Apr 28</td>
+                  </tr>
+                  <tr data-status="in-progress" data-priority="medium">
+                    <td><strong>#1006</strong></td>
+                    <td>Slow internet speed in Library</td>
+                    <td>Hana Mahmoud</td>
+                    <td>Network</td>
+                    <td><span class="priority priority-medium">Medium</span></td>
+                    <td><span class="badge badge-progress">In Progress</span></td>
+                    <td>Apr 25</td>
+                  </tr>
+                  <tr data-status="resolved" data-priority="low">
+                    <td><strong>#1003</strong></td>
+                    <td>Email sending error</td>
+                    <td>Leen Albooq</td>
+                    <td>Email</td>
+                    <td><span class="priority priority-low">Low</span></td>
+                    <td><span class="badge badge-resolved">Resolved</span></td>
+                    <td>Apr 20</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div><!-- /tickets table -->
+
+        <!-- Update Status Panel -->
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title"><i class="fa fa-edit"></i> Update Ticket Status</h3>
+            </div>
+
+            <form id="update-status-form" novalidate>
+              <div class="form-group">
+                <label for="ticket_id">Ticket Number <span class="required">*</span></label>
+                <input type="text" id="ticket_id" name="ticket_id" class="form-control"
+                       placeholder="e.g. 1021" />
+                <div class="form-error" id="ticket_id-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="new_status">New Status <span class="required">*</span></label>
+                <select id="new_status" name="new_status" class="form-control">
+                  <option value="">-- Select Status --</option>
+                  <option value="open">Open</option>
+                  <option value="in-progress">In Progress</option>
+                  <option value="resolved">Resolved</option>
+                  <option value="closed">Closed</option>
+                </select>
+                <div class="form-error" id="new_status-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="admin_note">Admin Note (Optional)</label>
+                <textarea id="admin_note" name="admin_note" class="form-control" rows="4"
+                          placeholder="Add a note about this update..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block">
+                <i class="fa fa-save"></i> Update Status
+              </button>
+            </form>
+          </div>
+
+          <!-- Quick Stats Card -->
+          <div class="card mt-2">
+            <h4 class="card-title mb-2" style="font-size:0.97rem;">
+              <i class="fa fa-chart-bar"></i> Category Breakdown
+            </h4>
+            <div style="font-size:0.9rem;">
+              <div class="d-flex justify-between" style="padding:6px 0; border-bottom:1px solid var(--border);">
+                <span>🌐 Network</span><strong>6</strong>
+              </div>
+              <div class="d-flex justify-between" style="padding:6px 0; border-bottom:1px solid var(--border);">
+                <span>🖥️ Hardware</span><strong>5</strong>
+              </div>
+              <div class="d-flex justify-between" style="padding:6px 0; border-bottom:1px solid var(--border);">
+                <span>💻 Software</span><strong>5</strong>
+              </div>
+              <div class="d-flex justify-between" style="padding:6px 0; border-bottom:1px solid var(--border);">
+                <span>🔑 Account</span><strong>4</strong>
+              </div>
+              <div class="d-flex justify-between" style="padding:6px 0; border-bottom:1px solid var(--border);">
+                <span>🖨️ Printer</span><strong>3</strong>
+              </div>
+              <div class="d-flex justify-between" style="padding:6px 0;">
+                <span>📧 Email</span><strong>1</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /.admin-layout -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 <strong>YIC IT Support Portal</strong> — CS381 Web Application Development</p>
+      <p style="margin-top:6px;font-size:0.85rem;">Leen Essam Albooq (441500252) &amp; Aseel Basem Alharbi (441500146)</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    function filterPriority(priority) {
+      document.querySelectorAll('#tickets-table-body tr').forEach(function (row) {
+        if (!priority || row.dataset.priority === priority) row.style.display = '';
+        else row.style.display = 'none';
+      });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit Ticket — YIC IT Support</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .ticket-form-wrap {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+    .side-info .card { margin-bottom: 18px; }
+    .side-info h4 { font-size: 0.97rem; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+    .side-info li {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      padding: 5px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .side-info li:last-child { border: none; }
+    .side-info li i { color: var(--accent); width: 16px; }
+    .char-counter {
+      text-align: right;
+      font-size: 0.83rem;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    @media (max-width: 768px) {
+      .ticket-form-wrap { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <header>
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-icon">IT</div>
+        <div>YIC IT Support<span>Yanbu Industrial College</span></div>
+      </a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="submit_ticket.html" class="active"><i class="fa fa-ticket-alt"></i> Submit Ticket</a></li>
+        <li><a href="my_tickets.html"><i class="fa fa-list"></i> My Tickets</a></li>
+        <li><a href="logout.html"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <h1><i class="fa fa-paper-plane"></i> Submit a Support Ticket</h1>
+      <p>Describe your IT issue in detail and our team will respond as soon as possible.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="ticket-form-wrap">
+
+        <!-- Main Form -->
+        <div>
+          <div class="card">
+            <div class="card-header">
+              <h2 class="card-title"><i class="fa fa-edit"></i> Ticket Details</h2>
+            </div>
+
+            <form id="ticket-form" novalidate>
+
+              <div class="form-group">
+                <label for="category">Issue Category <span class="required">*</span></label>
+                <select id="category" name="category" class="form-control">
+                  <option value="">-- Select a Category --</option>
+                  <option value="hardware">🖥️ Hardware Problem</option>
+                  <option value="software">💻 Software / Application</option>
+                  <option value="network">🌐 Network / Internet</option>
+                  <option value="account">🔑 Account / Password</option>
+                  <option value="printer">🖨️ Printer / Scanner</option>
+                  <option value="email">📧 Email Issue</option>
+                  <option value="other">❓ Other</option>
+                </select>
+                <div class="form-error" id="category-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="priority">Priority Level</label>
+                <select id="priority" name="priority" class="form-control">
+                  <option value="low">🟢 Low — Minor inconvenience</option>
+                  <option value="medium" selected>🟡 Medium — Affects my work</option>
+                  <option value="high">🔴 High — Cannot work at all</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="title">Ticket Title <span class="required">*</span></label>
+                <input type="text" id="title" name="title" class="form-control"
+                       placeholder="Brief summary of your issue (min 10 characters)"
+                       maxlength="150" />
+                <div class="form-hint">A short, clear title helps the IT team identify your issue quickly.</div>
+                <div class="form-error" id="title-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="description">Detailed Description <span class="required">*</span></label>
+                <textarea id="description" name="description" class="form-control"
+                          placeholder="Describe your issue in detail. Include: what happened, when it started, steps you already tried, and any error messages you see. (min 30 characters)"
+                          maxlength="1000" rows="6"></textarea>
+                <div class="char-counter"><span id="desc-counter">0</span> / 1000</div>
+                <div class="form-error" id="description-error"></div>
+              </div>
+
+              <div class="form-group">
+                <label for="location">Location / Room Number</label>
+                <input type="text" id="location" name="location" class="form-control"
+                       placeholder="e.g. Lab 204, Building A" />
+                <div class="form-hint">Optional — helps IT team reach you faster.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="attachment">Attachment (Screenshot / File)</label>
+                <input type="file" id="attachment" name="attachment" class="form-control"
+                       accept="image/*,.pdf,.doc,.docx" />
+                <div class="form-hint">Optional — images or documents related to your issue (max 5MB).</div>
+              </div>
+
+              <hr class="divider" />
+
+              <button type="submit" class="btn btn-accent btn-block btn-lg">
+                &#128228; Submit Ticket
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Sidebar Info -->
+        <div class="side-info">
+          <div class="card">
+            <h4><i class="fa fa-clock"></i> Response Times</h4>
+            <ul>
+              <li><i class="fa fa-circle" style="color:#e74c3c;"></i> High Priority: Within 2 hours</li>
+              <li><i class="fa fa-circle" style="color:#f39c12;"></i> Medium Priority: Within 1 day</li>
+              <li><i class="fa fa-circle" style="color:#2ecc71;"></i> Low Priority: Within 3 days</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h4><i class="fa fa-lightbulb"></i> Tips for a Good Ticket</h4>
+            <ul>
+              <li><i class="fa fa-check"></i> Be specific about the problem</li>
+              <li><i class="fa fa-check"></i> Include error messages if any</li>
+              <li><i class="fa fa-check"></i> Mention steps you already tried</li>
+              <li><i class="fa fa-check"></i> Add a screenshot if possible</li>
+              <li><i class="fa fa-check"></i> Write your location / room</li>
+            </ul>
+          </div>
+
+          <div class="card" style="background:var(--primary); color:#fff;">
+            <h4 style="color:var(--accent);"><i class="fa fa-phone"></i> Urgent Help?</h4>
+            <p style="font-size:0.9rem; margin-top:8px; opacity:0.88;">
+              For urgent hardware failures or complete network outages, contact the IT Helpdesk directly:
+            </p>
+            <p style="font-weight:700; margin-top:10px; color:var(--accent-light);">📞 Ext. 1100</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 <strong>YIC IT Support Portal</strong> — CS381 Web Application Development</p>
+      <p style="margin-top:6px;font-size:0.85rem;">Leen Essam Albooq (441500252) &amp; Aseel Basem Alharbi (441500146)</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+</body>
+</html>

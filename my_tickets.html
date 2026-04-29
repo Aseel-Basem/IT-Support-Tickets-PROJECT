@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Tickets — YIC IT Support</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .search-bar {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+    .search-bar input { flex: 1; min-width: 200px; }
+    .search-bar select { min-width: 160px; }
+
+    .ticket-list { margin-top: 6px; }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <header>
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-icon">IT</div>
+        <div>YIC IT Support<span>Yanbu Industrial College</span></div>
+      </a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="submit_ticket.html"><i class="fa fa-ticket-alt"></i> Submit Ticket</a></li>
+        <li><a href="my_tickets.html" class="active"><i class="fa fa-list"></i> My Tickets</a></li>
+        <li><a href="logout.html"><i class="fa fa-sign-out-alt"></i> Logout</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Page Hero -->
+  <div class="page-hero">
+    <div class="container">
+      <h1><i class="fa fa-list-alt"></i> My Support Tickets</h1>
+      <p>Track and monitor all your submitted IT support requests.</p>
+    </div>
+  </div>
+
+  <main>
+    <div class="container">
+
+      <!-- Summary Stats -->
+      <div class="stats-grid" style="margin-bottom:28px;">
+        <div class="stat-card">
+          <div class="stat-icon yellow"><i class="fa fa-folder-open"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Open</div>
+            <div class="stat-value">2</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue"><i class="fa fa-spinner"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">In Progress</div>
+            <div class="stat-value">1</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green"><i class="fa fa-check-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Resolved</div>
+            <div class="stat-value">3</div>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon red"><i class="fa fa-times-circle"></i></div>
+          <div class="stat-info">
+            <div class="stat-label">Closed</div>
+            <div class="stat-value">1</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search + Filter -->
+      <div class="card">
+        <div class="card-header d-flex justify-between align-center flex-wrap gap-2">
+          <h2 class="card-title"><i class="fa fa-ticket-alt"></i> All Tickets</h2>
+          <a href="submit_ticket.html" class="btn btn-accent btn-sm">
+            <i class="fa fa-plus"></i> New Ticket
+          </a>
+        </div>
+
+        <div class="search-bar">
+          <input type="text" id="ticket-search" class="form-control"
+                 placeholder="&#128269; Search tickets by title, category..." />
+          <select id="filter-status-user" class="form-control" onchange="filterTickets(this.value)">
+            <option value="">All Statuses</option>
+            <option value="open">Open</option>
+            <option value="in-progress">In Progress</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
+          </select>
+        </div>
+
+        <!-- Ticket Cards -->
+        <div class="ticket-list" id="tickets-container">
+
+          <!-- Ticket 1 -->
+          <div class="ticket-card" data-status="open">
+            <div>
+              <div class="ticket-id">#TKT-1021 &nbsp;·&nbsp; <i class="fa fa-calendar-alt"></i> May 12, 2026</div>
+              <div class="ticket-title">Cannot connect to Wi-Fi in Lab 204</div>
+              <div class="ticket-meta">
+                <span>📂 Network / Internet</span> &nbsp;·&nbsp;
+                <span class="priority priority-high">High</span>
+              </div>
+            </div>
+            <div class="ticket-actions">
+              <span class="badge badge-open">Open</span>
+              <a href="#" class="btn btn-sm btn-outline"><i class="fa fa-eye"></i> View</a>
+            </div>
+          </div>
+
+          <!-- Ticket 2 -->
+          <div class="ticket-card" data-status="in-progress">
+            <div>
+              <div class="ticket-id">#TKT-1018 &nbsp;·&nbsp; <i class="fa fa-calendar-alt"></i> May 10, 2026</div>
+              <div class="ticket-title">Microsoft Office not opening — crashes on startup</div>
+              <div class="ticket-meta">
+                <span>📂 Software / Application</span> &nbsp;·&nbsp;
+                <span class="priority priority-medium">Medium</span>
+              </div>
+            </div>
+            <div class="ticket-actions">
+              <span class="badge badge-progress">In Progress</span>
+              <a href="#" class="btn btn-sm btn-outline"><i class="fa fa-eye"></i> View</a>
+            </div>
+          </div>
+
+          <!-- Ticket 3 -->
+          <div class="ticket-card" data-status="resolved">
+            <div>
+              <div class="ticket-id">#TKT-1012 &nbsp;·&nbsp; <i class="fa fa-calendar-alt"></i> May 5, 2026</div>
+              <div class="ticket-title">Printer in Building B not printing</div>
+              <div class="ticket-meta">
+                <span>📂 Printer / Scanner</span> &nbsp;·&nbsp;
+                <span class="priority priority-low">Low</span>
+              </div>
+            </div>
+            <div class="ticket-actions">
+              <span class="badge badge-resolved">Resolved</span>
+              <a href="#" class="btn btn-sm btn-outline"><i class="fa fa-eye"></i> View</a>
+            </div>
+          </div>
+
+          <!-- Ticket 4 -->
+          <div class="ticket-card" data-status="open">
+            <div>
+              <div class="ticket-id">#TKT-1025 &nbsp;·&nbsp; <i class="fa fa-calendar-alt"></i> May 14, 2026</div>
+              <div class="ticket-title">Cannot access student email — password not working</div>
+              <div class="ticket-meta">
+                <span>📂 Account / Password</span> &nbsp;·&nbsp;
+                <span class="priority priority-high">High</span>
+              </div>
+            </div>
+            <div class="ticket-actions">
+              <span class="badge badge-open">Open</span>
+              <a href="#" class="btn btn-sm btn-outline"><i class="fa fa-eye"></i> View</a>
+            </div>
+          </div>
+
+          <!-- Ticket 5 -->
+          <div class="ticket-card" data-status="resolved">
+            <div>
+              <div class="ticket-id">#TKT-1008 &nbsp;·&nbsp; <i class="fa fa-calendar-alt"></i> April 28, 2026</div>
+              <div class="ticket-title">Desktop PC making loud noise — fan issue</div>
+              <div class="ticket-meta">
+                <span>📂 Hardware Problem</span> &nbsp;·&nbsp;
+                <span class="priority priority-medium">Medium</span>
+              </div>
+            </div>
+            <div class="ticket-actions">
+              <span class="badge badge-resolved">Resolved</span>
+              <a href="#" class="btn btn-sm btn-outline"><i class="fa fa-eye"></i> View</a>
+            </div>
+          </div>
+
+          <!-- Ticket 6 -->
+          <div class="ticket-card" data-status="resolved">
+            <div>
+              <div class="ticket-id">#TKT-1003 &nbsp;·&nbsp; <i class="fa fa-calendar-alt"></i> April 20, 2026</div>
+              <div class="ticket-title">Email sending error — "server not responding"</div>
+              <div class="ticket-meta">
+                <span>📂 Email Issue</span> &nbsp;·&nbsp;
+                <span class="priority priority-low">Low</span>
+              </div>
+            </div>
+            <div class="ticket-actions">
+              <span class="badge badge-resolved">Resolved</span>
+              <a href="#" class="btn btn-sm btn-outline"><i class="fa fa-eye"></i> View</a>
+            </div>
+          </div>
+
+          <!-- Ticket 7 -->
+          <div class="ticket-card" data-status="closed">
+            <div>
+              <div class="ticket-id">#TKT-0997 &nbsp;·&nbsp; <i class="fa fa-calendar-alt"></i> April 10, 2026</div>
+              <div class="ticket-title">Projector in Room 112 not displaying image</div>
+              <div class="ticket-meta">
+                <span>📂 Hardware Problem</span> &nbsp;·&nbsp;
+                <span class="priority priority-low">Low</span>
+              </div>
+            </div>
+            <div class="ticket-actions">
+              <span class="badge badge-closed">Closed</span>
+              <a href="#" class="btn btn-sm btn-outline"><i class="fa fa-eye"></i> View</a>
+            </div>
+          </div>
+
+        </div><!-- /#tickets-container -->
+
+        <!-- No results message -->
+        <div id="no-results" class="empty-state hidden">
+          <div class="empty-icon">🔍</div>
+          <h3>No tickets found</h3>
+          <p>No tickets match your search. Try different keywords.</p>
+        </div>
+
+      </div><!-- /.card -->
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 <strong>YIC IT Support Portal</strong> — CS381 Web Application Development</p>
+      <p style="margin-top:6px;font-size:0.85rem;">Leen Essam Albooq (441500252) &amp; Aseel Basem Alharbi (441500146)</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    function filterTickets(status) {
+      document.querySelectorAll('.ticket-card').forEach(function (card) {
+        if (!status || card.dataset.status === status) {
+          card.style.display = '';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      const visible = document.querySelectorAll('.ticket-card:not([style*="none"])');
+      document.getElementById('no-results').classList.toggle('hidden', visible.length > 0);
+    }
+  </script>
+</body>
+</html>

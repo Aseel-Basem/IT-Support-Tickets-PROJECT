@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Logged Out — YIC IT Support</title>
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    .logout-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: calc(100vh - 128px);
+      padding: 40px 16px;
+    }
+    .logout-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+      padding: 48px 36px;
+      text-align: center;
+      max-width: 460px;
+      width: 100%;
+      border-top: 5px solid var(--success);
+    }
+    .logout-icon {
+      width: 80px; height: 80px;
+      background: #eafaf1;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2.2rem;
+      color: var(--success);
+      margin: 0 auto 24px;
+    }
+    .logout-card h2 { font-size: 1.6rem; color: var(--primary); margin-bottom: 10px; }
+    .logout-card p  { color: var(--text-muted); margin-bottom: 28px; }
+    .logout-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .countdown { font-size: 0.88rem; color: var(--text-muted); margin-top: 20px; }
+    .countdown span { color: var(--accent); font-weight: 700; }
+  </style>
+</head>
+<body class="page-wrapper">
+
+  <header>
+    <nav class="navbar container">
+      <a href="index.html" class="navbar-brand">
+        <div class="logo-icon">IT</div>
+        <div>YIC IT Support<span>Yanbu Industrial College</span></div>
+      </a>
+      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <ul class="nav-links">
+        <li><a href="index.html"><i class="fa fa-home"></i> Home</a></li>
+        <li><a href="login.html" class="btn-nav"><i class="fa fa-sign-in-alt"></i> Login</a></li>
+        <li><a href="register.html"><i class="fa fa-user-plus"></i> Register</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <div class="logout-wrap">
+      <div class="logout-card">
+        <div class="logout-icon">
+          <i class="fa fa-check"></i>
+        </div>
+        <h2>You've Been Logged Out</h2>
+        <p>Your session has been ended securely. Thank you for using the YIC IT Support Portal.</p>
+
+        <div class="logout-btns">
+          <a href="login.html" class="btn btn-primary btn-lg">
+            <i class="fa fa-sign-in-alt"></i> Sign In Again
+          </a>
+          <a href="index.html" class="btn btn-outline btn-lg">
+            <i class="fa fa-home"></i> Home
+          </a>
+        </div>
+
+        <p class="countdown">
+          Redirecting to home in <span id="countdown">10</span> seconds...
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>&copy; 2026 <strong>YIC IT Support Portal</strong> — CS381 Web Application Development</p>
+      <p style="margin-top:6px;font-size:0.85rem;">Leen Essam Albooq (441500252) &amp; Aseel Basem Alharbi (441500146)</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/script.js"></script>
+  <script>
+    var count = 10;
+    var el = document.getElementById('countdown');
+    var timer = setInterval(function () {
+      count--;
+      if (el) el.textContent = count;
+      if (count <= 0) {
+        clearInterval(timer);
+        window.location.href = 'index.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
