@@ -2,260 +2,101 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>YIC IT Support Portal</title>
-  <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
-    /* Hero Section */
-    .hero {
-      background: linear-gradient(135deg, #0f2347 0%, #1a3a6e 55%, #1e5090 100%);
-      color: #fff;
-      padding: 80px 0 70px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 320px; height: 320px;
-      background: rgba(0,168,107,0.12);
-      border-radius: 50%;
-    }
-    .hero::after {
-      content: '';
-      position: absolute;
-      bottom: -80px; left: -40px;
-      width: 260px; height: 260px;
-      background: rgba(107,140,218,0.10);
-      border-radius: 50%;
-    }
-    .hero h1 {
-      font-size: 2.7rem;
-      font-weight: 900;
-      margin-bottom: 16px;
-      line-height: 1.2;
-    }
-    .hero h1 span { color: var(--accent); }
-    .hero p {
-      font-size: 1.13rem;
-      opacity: 0.88;
-      max-width: 540px;
-      margin: 0 auto 34px;
-    }
-    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
-    /* Features */
-    .features-section { padding: 60px 0; }
-    .features-section h2 {
-      text-align: center;
-      font-size: 1.8rem;
-      color: var(--primary);
-      margin-bottom: 10px;
-    }
-    .features-section .subtitle {
-      text-align: center;
-      color: var(--text-muted);
-      margin-bottom: 44px;
-    }
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 22px;
-    }
-    .feature-card {
-      background: var(--surface);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      text-align: center;
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      transition: transform var(--transition), box-shadow var(--transition);
-    }
-    .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
-    .feature-icon {
-      width: 62px; height: 62px;
-      border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.65rem;
-      margin: 0 auto 18px;
-    }
-    .feature-card h3 { font-size: 1.08rem; font-weight: 700; color: var(--primary); margin-bottom: 8px; }
-    .feature-card p { font-size: 0.93rem; color: var(--text-muted); }
+  <!-- CSS FILE --><link rel="stylesheet" href="/yic-it-support/assets/css/style.css">
 
-    /* How It Works */
-    .how-section { background: var(--surface-alt); padding: 60px 0; }
-    .how-section h2 { text-align: center; font-size: 1.8rem; color: var(--primary); margin-bottom: 40px; }
-    .steps { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; }
-    .step {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      max-width: 200px;
-      flex: 1;
-      min-width: 140px;
-      position: relative;
-    }
-    .step:not(:last-child)::after {
-      content: '→';
-      position: absolute;
-      right: -12px; top: 20px;
-      color: var(--accent);
-      font-size: 1.4rem;
-      font-weight: 700;
-    }
-    .step-number {
-      width: 50px; height: 50px;
-      border-radius: 50%;
-      background: var(--primary);
-      color: #fff;
-      font-size: 1.2rem;
-      font-weight: 800;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 14px;
-    }
-    .step h4 { font-size: 0.97rem; color: var(--text); font-weight: 700; margin-bottom: 5px; }
-    .step p { font-size: 0.87rem; color: var(--text-muted); }
-
-    /* CTA Banner */
-    .cta-section {
-      background: linear-gradient(120deg, var(--primary) 0%, #1e5090 100%);
-      padding: 48px 20px;
-      text-align: center;
-    }
-    .cta-section h2 { font-size: 1.7rem; color: #fff; margin-bottom: 10px; }
-    .cta-section p { color: rgba(255,255,255,0.82); margin-bottom: 24px; }
-
-    @media (max-width: 768px) {
-      .hero h1 { font-size: 1.9rem; }
-      .step:not(:last-child)::after { display: none; }
-    }
-  </style>
+  <!-- ICONS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
+
 <body class="page-wrapper">
 
-  <!-- HEADER -->
-  <header>
-    <nav class="navbar container">
-      <a href="index.html" class="navbar-brand">
-        <div class="logo-icon">IT</div>
-        <div>
-          YIC IT Support
-          <span>Yanbu Industrial College</span>
-        </div>
+<header>
+  <nav class="navbar container">
+    <a href="index.html" class="navbar-brand">
+      <div class="logo-icon">IT</div>
+      <div>
+        YIC IT Support
+        <span>Yanbu Industrial College</span>
+      </div>
+    </a>
+
+    <button class="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="submit_ticket.php">Submit Ticket</a></li>
+      <li><a href="my_tickets.php">My Tickets</a></li>
+      <li><a href="login.php">Login</a></li>
+      <li><a href="register.php">Register</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <h1>Welcome to <span>YIC IT Support</span> Portal</h1>
+    <p>Submit technical support requests, track ticket status, and get help from our IT team — all in one place.</p>
+
+    <div class="hero-btns">
+      <a href="submit_ticket.php" class="btn btn-accent">
+        <i class="fa fa-paper-plane"></i> Submit Ticket
       </a>
-      <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="submit_ticket.html"><i class="fa fa-ticket-alt"></i> Submit Ticket</a></li>
-        <li><a href="my_tickets.html"><i class="fa fa-list"></i> My Tickets</a></li>
-        <li><a href="login.html"><i class="fa fa-sign-in-alt"></i> Login</a></li>
-        <li><a href="register.html" class="btn-nav"><i class="fa fa-user-plus"></i> Register</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container">
-      <h1>Welcome to <span>YIC IT Support</span> Portal</h1>
-      <p>Submit technical support requests, track ticket status, and get help from our IT team — all in one place.</p>
-      <div class="hero-btns">
-        <a href="submit_ticket.html" class="btn btn-accent btn-lg">
-          <i class="fa fa-paper-plane"></i> Submit a Ticket
-        </a>
-        <a href="register.html" class="btn btn-outline btn-lg" style="border-color:#fff;color:#fff;">
-          <i class="fa fa-user-plus"></i> Get Started
-        </a>
-      </div>
+      <a href="register.php" class="btn btn-outline">
+        <i class="fa fa-user-plus"></i> Get Started
+      </a>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- FEATURES -->
-  <main>
-    <section class="features-section">
-      <div class="container">
-        <h2>Everything You Need</h2>
-        <p class="subtitle">A simple, efficient system for managing IT support at Yanbu Industrial College</p>
-        <div class="features-grid">
-          <div class="feature-card">
-            <div class="feature-icon" style="background:#dbeeff; color:#1a5fa3;"><i class="fa fa-ticket-alt"></i></div>
-            <h3>Submit Tickets</h3>
-            <p>Report technical problems with hardware, software, network, or any IT-related issue.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon" style="background:#d5f5e3; color:#1a7a42;"><i class="fa fa-search"></i></div>
-            <h3>Track Status</h3>
-            <p>Follow up on your tickets in real time — Open, In Progress, Resolved, or Closed.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon" style="background:#fff4d4; color:#c87800;"><i class="fa fa-shield-alt"></i></div>
-            <h3>Secure Access</h3>
-            <p>Role-based login for students and administrators with secure session management.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon" style="background:#fce4e4; color:#c0392b;"><i class="fa fa-tachometer-alt"></i></div>
-            <h3>Admin Dashboard</h3>
-            <p>Administrators can view all tickets, update statuses, and manage reported issues.</p>
-          </div>
-        </div>
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="container">
+    <h2>Everything You Need</h2>
+
+    <div class="features-grid">
+
+      <div class="feature-card">
+        <i class="fa fa-ticket-alt"></i>
+        <h3>Submit Tickets</h3>
+        <p>Report any IT issue easily.</p>
       </div>
-    </section>
 
-    <!-- HOW IT WORKS -->
-    <section class="how-section">
-      <div class="container">
-        <h2><i class="fa fa-question-circle"></i> How It Works</h2>
-        <div class="steps">
-          <div class="step">
-            <div class="step-number">1</div>
-            <h4>Register</h4>
-            <p>Create your account using your student or staff ID.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">2</div>
-            <h4>Submit</h4>
-            <p>Describe your IT issue and choose the category.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">3</div>
-            <h4>Track</h4>
-            <p>Monitor your ticket's status from your dashboard.</p>
-          </div>
-          <div class="step">
-            <div class="step-number">4</div>
-            <h4>Resolved</h4>
-            <p>Get notified when your issue is fixed by the IT team.</p>
-          </div>
-        </div>
+      <div class="feature-card">
+        <i class="fa fa-search"></i>
+        <h3>Track Status</h3>
+        <p>Follow your ticket progress.</p>
       </div>
-    </section>
 
-    <!-- CTA -->
-    <section class="cta-section">
-      <div class="container">
-        <h2>Having a Technical Issue?</h2>
-        <p>Don't wait — submit your ticket now and we'll get it sorted as soon as possible.</p>
-        <a href="submit_ticket.html" class="btn btn-primary btn-lg">
-          <i class="fa fa-paper-plane"></i> Submit a Support Ticket
-        </a>
+      <div class="feature-card">
+        <i class="fa fa-shield-alt"></i>
+        <h3>Secure</h3>
+        <p>Safe login system.</p>
       </div>
-    </section>
-  </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="container">
-      <p>&copy; 2026 <strong>YIC IT Support Portal</strong> — Yanbu Industrial College &nbsp;|&nbsp; CS381 Web Application Development</p>
-      <p style="margin-top:6px;font-size:0.85rem;">Leen Essam Albooq (441500252) &amp; Aseel Basem Alharbi (441500146)</p>
+      <div class="feature-card">
+        <i class="fa fa-tachometer-alt"></i>
+        <h3>Dashboard</h3>
+        <p>Admin control panel.</p>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</section>
 
-  <script src="assets/js/script.js"></script>
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <p>© 2026 YIC IT Support Portal</p>
+  </div>
+</footer>
+
+<script src="assets/js/script.js"></script>
 </body>
 </html>
