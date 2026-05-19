@@ -2,12 +2,24 @@
 session_start();
 include("config/db.php");
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if (!isset($_SESSION["user_id"])) {
     header("Location: login.php");
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if (
+        !isset($_POST['csrf_token']) ||
+        $_POST['csrf_token'] !== $_SESSION['csrf_token']
+    ) {
+        die("Invalid CSRF token");
+    }
+
     $user_id = $_SESSION["user_id"];
     $title = $_POST["title"];
     $description = $_POST["description"];
@@ -26,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
   <meta charset="UTF-8">
   <title>Submit Ticket — YIC IT Support</title>
-  <link rel="stylesheet" href="/yic-it-support/assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
@@ -63,6 +75,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       </div>
 
       <form method="POST" action="submit_ticket.php">
+
+        <input type="hidden" name="csrf_token"
+        value="<?= $_SESSION['csrf_token']; ?>">
 
         <div class="form-group">
           <label>Ticket Title</label>
