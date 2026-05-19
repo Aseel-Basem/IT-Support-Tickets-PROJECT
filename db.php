@@ -2,7 +2,7 @@
 $host = "localhost";
 $db_name = "yic_support";
 $username = "root";
-$password = "441500252";
+$password = "";
 
 try {
     $conn = new PDO("mysql:host=$host;dbname=$db_name", $username, $password);
