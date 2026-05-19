@@ -2,6 +2,10 @@
 session_start();
 include("config/db.php");
 
+if (empty($_SESSION['csrf_token'])) {
+    $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+}
+
 if (!isset($_SESSION["admin_id"])) {
     header("Location: login.php");
     exit();
@@ -30,7 +34,7 @@ function badgeClass($status) {
 <head>
   <meta charset="UTF-8">
   <title>Admin Dashboard — YIC IT Support</title>
-  <link rel="stylesheet" href="/yic-it-support/assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 
@@ -99,6 +103,7 @@ function badgeClass($status) {
             </span>
 
             <form action="update_status.php" method="POST" class="d-flex gap-2">
+              <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
               <input type="hidden" name="ticket_id" value="<?= htmlspecialchars($t["ticket_id"]) ?>">
 
               <select name="status" class="form-control" required>
@@ -114,6 +119,7 @@ function badgeClass($status) {
             </form>
 
             <form action="delete_ticket.php" method="POST" onsubmit="return confirm('Delete this ticket?');">
+              <input type="hidden" name="csrf_token" value="<?= $_SESSION['csrf_token']; ?>">
               <input type="hidden" name="ticket_id" value="<?= htmlspecialchars($t["ticket_id"]) ?>">
               <button type="submit" class="btn btn-danger btn-sm">
                 Delete
