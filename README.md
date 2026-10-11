@@ -31,3 +31,9 @@ A web-based IT support ticket system for Yanbu Industrial College.
 - Role-based access
 - Responsive design
 - Security implementation
+
+## Security
+- Database queries use PHP PDO to reduce SQL injection risk
+- Role-based access control: only admins can update or delete tickets
+- Session-based login with logout to end user sessions
+- Demo accounts are for local testing only; change passwords before any real deployment
