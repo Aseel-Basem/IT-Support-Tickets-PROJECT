@@ -18,15 +18,7 @@ A web-based IT support ticket system for Yanbu Industrial College.
 5. Open the project in the browser:
    `http://localhost/IT-Support-Tickets-PROJECT-main/`
 
-## Login Credentials
 
-### Admin Account
-Email: admin@yic.edu  
-Password: 123456
-
-### User Account
-Email: Aseel@yic.edu.sa 
-Password: 123456
 
 ## Features
 - User registration
